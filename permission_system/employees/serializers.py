@@ -5,12 +5,11 @@ from employees.models import Employee
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
-    # Virtual fields for user creation (write-only)
+   
     email = serializers.EmailField(write_only=True, required=False)
     username = serializers.CharField(write_only=True, required=False)
     password = serializers.CharField(write_only=True, required=False, style={'input_type': 'password'})
     
-    # Read-only fields for display
     user_email = serializers.EmailField(source='user.email', read_only=True)
 
     class Meta:

@@ -7,11 +7,9 @@ class HasPermission(BasePermission):
 
         required_permission = getattr(view, "required_permission", None)
 
-        # If no permission required → allow
         if not required_permission:
             return True
 
-        # System stability: Always allow users to see their own profile
         if required_permission == "VIEW_SELF":
             return True
 

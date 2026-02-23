@@ -10,7 +10,6 @@ const EmployeeList = () => {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
 
-    // Modal state
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [selectedEmployee, setSelectedEmployee] = useState(null);
@@ -92,7 +91,7 @@ const EmployeeList = () => {
         e.preventDefault();
         try {
             const dataToSend = { ...formData };
-            // If creating and no existing user selected, omit the user field
+            
             if (!isEditing && !dataToSend.user) {
                 delete dataToSend.user;
             }

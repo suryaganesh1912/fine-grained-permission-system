@@ -4,7 +4,7 @@ import { useAuth } from "./AuthContext";
 const ProtectedRoute = ({ requiredPermission }) => {
     const { token, user, hasPermission, loading } = useAuth();
 
-    // Explicitly check for validation state (token exists but user data hasn't arrived)
+    
     const isValidating = (loading && token) || (token && !user);
 
     if (isValidating) {
@@ -24,7 +24,6 @@ const ProtectedRoute = ({ requiredPermission }) => {
     if (requiredPermission && !hasPermission(requiredPermission)) {
         console.warn(`ProtectedRoute: Missing ${requiredPermission} permission.`);
 
-        // Special case: VIEW_SELF should always be allowed as a basic fallback
         if (requiredPermission === "VIEW_SELF") {
             console.log("ProtectedRoute: Allowing VIEW_SELF as basic user right.");
             return <Outlet />;
